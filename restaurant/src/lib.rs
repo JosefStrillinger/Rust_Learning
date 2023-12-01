@@ -42,7 +42,7 @@ pub fn eat_at_restaurant() {
     // meal.seasonal_fruit = String::from("blueberries");
 }
 
-pub fn eat_at_restaurant() {
+/* pub fn eat_at_restaurant() {
     // Absolute path
     crate::front_of_house::hosting::add_to_waitlist();
 
@@ -60,4 +60,4 @@ mod back_of_house {
 pub fn eat_at_restaurant() {
     let order1 = back_of_house::Appetizer::Soup;
     let order2 = back_of_house::Appetizer::Salad;
-}
+} */
