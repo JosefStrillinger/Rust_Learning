@@ -1,3 +1,4 @@
+use std::fs;
 use std::fs::File;
 use std::io::ErrorKind;
 use std::io::{self, Read};
@@ -34,6 +35,7 @@ fn main() {
         File::open("hello.txt").expect("hello.txt should be included in this project");
 }
 
+// Propagating errors1
 fn read_username_from_file() -> Result<String, io::Error> {
     let username_file_result = File::open("hello.txt");
 
@@ -48,4 +50,24 @@ fn read_username_from_file() -> Result<String, io::Error> {
         Ok(_) => Ok(username),
         Err(e) => Err(e),
     }
+}
+
+// The ? operator to return early with a Result
+fn read_username_from_file_simple() -> Result<String, io::Error> {
+    let mut username_file = File::open("hello.txt")?;
+    let mut username = String::new();
+    username_file.read_to_string(&mut username)?;
+    // Ok(username);
+
+    // Simplified by chaining
+    let mut username = String::new();
+
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+
+    Ok(username)
+}
+
+// Read to string already provides a way to return an error
+fn read_username_from_file_very_simple() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
 }
