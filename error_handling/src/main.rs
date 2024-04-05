@@ -71,3 +71,21 @@ fn read_username_from_file_simple() -> Result<String, io::Error> {
 fn read_username_from_file_very_simple() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
 }
+
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}.", value);
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
